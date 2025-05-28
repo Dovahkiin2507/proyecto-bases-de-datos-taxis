@@ -3,7 +3,6 @@ muchas quejas de que no había vehículos suficientes.
 ¿Cuántos taxis hay actualmente en las calles? La información sobre todos los automóviles suficientes está en la tabla cabs.
 
 -Consulta SQL utilizada: SELECT COUNT (DISTINCT vehicle_id) FROM cabs;
--Número de automóviles: 5500
 
 2.En la tabla cabs, cuenta el número de automóviles de cada compañía. Ordena los valores en orden descendente. El equipo piensa que algunas compañías no tuvieron suficientes 
 automóviles disponibles.
