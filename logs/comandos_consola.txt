@@ -1,2 +1,25 @@
-Se necesitaba buscar solicitudes provenientes de una direccion IP que comenzaba con "233.201" y en una carpeta especifica dentro de los logs, la cual era "logs/2019/12"
-El comando utilizado fue: grep -R "^233.201" ~/logs/2019/12
+Comandos utilizados en consola:
+
+1.El equipo de desarrollo ha enviado una tarea: debes averiguar qué solicitudes han venido de una dirección IP. Una dirección IP consta de cuatro números separados por un punto. Necesitas direcciones que comiencen con "233.201".
+
+Los logs están en un servidor remoto en logs/2019/12. No sabes qué día ocurrió el error.
+
+Tu tarea es averiguar qué solicitudes fueron enviadas.
+-El comando utilizado fue: grep -R "^233.201" ~/logs/2019/12
+
+2.Se ha detectado un error en el sistema. Estaba activo el 12.30.2019. En ese momento, había errores 400 y 500. Tu tarea consiste en guardar los logs que se registraron durante este periodo en un archivo independiente.  
+
+Después, debes poner estos logs en archivos por separado con base en los errores
+-Comandos que crean los directorios bug1 y events: mkdir bug1 > cd bug1 > mkdir events
+-El comando usado para seleccionar las solicitudes para un periodo especificado. Estas son las solicitudes usadas para obtener registros en el archivo main.txt:
+cd bug1 > cp ~/logs/2019/12/apache_2019-12-30.txt main.txt
+-Los comandos utilizados para colocar los registros en los archivos 400.txt y 500.txt del main.txt:
+a. Acceder al directorio events: 
+cd bug1/events
+b. Crear los archivos 400.txt y 500.txt:
+touch 400.txt 500.txt
+c. Buscar los errores 400 en el archivo main.txt y colocarlos en el archivo 400.txt: 
+grep “ 400 “ ~/bug1/main.txt > ~/bug1/events/400.txt
+d. Buscar los errores 500 en el archivo main.txt y colocarlos en el archivo 500.txt: 
+grep “ 500 ” ~/bug1/main.txt >  ~/bug1/events/500.txt
+
