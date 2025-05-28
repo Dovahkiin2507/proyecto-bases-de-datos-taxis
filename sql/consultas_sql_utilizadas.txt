@@ -1,0 +1,29 @@
+1.Tienes una base de datos con los viajes en taxi. El plan era tener 10 550 vehículos disponibles, lo que cubre la demanda del usuario; sin embargo, el equipo recibió
+muchas quejas de que no había vehículos suficientes. 
+¿Cuántos taxis hay actualmente en las calles? La información sobre todos los automóviles suficientes está en la tabla cabs.
+
+-Consulta SQL utilizada: SELECT COUNT (DISTINCT vehicle_id) FROM cabs;
+-Número de automóviles: 5500
+
+2.En la tabla cabs, cuenta el número de automóviles de cada compañía. Ordena los valores en orden descendente. El equipo piensa que algunas compañías no tuvieron suficientes 
+automóviles disponibles.
+
+Devuelve las compañías con menos de 100 automóviles. Llama cnt (contados) al campo con el número de automóviles, y company_name al campo con el nombre de la compañía.
+
+-Consulta SQL utilizada: SELECT company_name, COUNT (cab_id) AS cnt FROM cabs GROUP BY company_name HAVING COUNT (cab_id) < 100 ORDER BY cnt DESC;
+
+3.La aplicación de taxis calcula el coeficiente del costo del viaje. Si el clima es bueno, el valor del coeficiente es 1. Si llueve o hay tormentas en el exterior, el coeficiente 
+aumenta a 2. El equipo tiene una hipótesis de que hay un error en el cálculo del coeficiente. Para revisar el cálculo del coeficiente, el equipo necesita una selección de datos: el 
+área de desarrollo puede comparar el coeficiente con los datos en los logs y corregir el bug. Tu tarea es obtener una selección.
+
+-Consulta SQL utilizada: SELECT ts, CASE WHEN description LIKE '%rain%' OR description LIKE '%storm%' THEN 'Bad' ELSE 'Good' END AS weather_conditions FROM weather_records WHERE ts 
+BETWEEN '2017-11-05 00:00:00' AND '2017-11-06 00:00:00';
+
+4.Tras actualizar el software, la compañía de taxis comienza a reportar que la ganancia que reciben no coincide con los datos que proporciona la aplicación. El equipo de desarrollo 
+sugiere que el problema puede estar en los datos sobre el número de viajes.
+
+Para determinar si hay un bug, debes obtener la selección del número de viajes de cada compañía de taxi para los días 15 y 16 de noviembre de 2017.
+
+-Consulta SQL utilizada: SELECT company_name, COUNT (trip_id) AS trips_amount FROM cabs INNER JOIN trips ON cabs.cab_id = trips.cab_id WHERE CAST (trips.start_ts AS DATE) BETWEEN 
+'2017-11-15' AND '2017-11-16' GROUP BY company_name ORDER BY trips_amount DESC;
+
