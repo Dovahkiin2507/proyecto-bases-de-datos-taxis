@@ -1,0 +1,2 @@
+Se necesitaba buscar solicitudes provenientes de una direccion IP que comenzaba con "233.201" y en una carpeta especifica dentro de los logs, la cual era "logs/2019/12"
+El comando utilizado fue: grep -R "^233.201" ~/logs/2019/12
